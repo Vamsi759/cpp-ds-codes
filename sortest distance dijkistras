@@ -1,0 +1,110 @@
+#include<bits/stdc++.h>
+using namespace std;
+class graph{
+    
+    int v;
+    list<pair<int,int>> *l;
+    public:
+    
+    graph(int x){
+        v=x;
+              l=new list<pair<int,int>>[v];
+    }
+   //  l=new list<pair<int,int>>[v];
+    void insert(int i,int j,int wt){
+        l[i].push_back({wt,j});
+        l[j].push_back({wt,i});
+    }
+    void print(){
+    for(int i=0;i<v;i++){
+        cout<<i<<"-->";
+        for(auto j:l[i]){
+            cout<<j.first<<" "<<j.second<<"__";
+        }
+        cout<<endl;
+    }
+    }
+    int den(int b){
+        
+    vector<int>dist(v,INT_MAX);
+    set<pair<int,int>>s;
+    dist[b]=0;
+    s.insert({0,b});
+    
+    while(!s.empty()){
+        
+        auto it=s.begin();
+        int node=it->second;
+        int dis=it->first;
+        s.erase(it);
+        
+        
+       // cout<<node<<" "<<distillnow<<endl;
+        for(auto pair:l[node]){
+            
+            
+            int nbr=pair.second;
+            int edge=pair.first;
+            
+            if((edge+dis)<dist[nbr]){
+                
+                auto it=s.find({dist[nbr],nbr});
+                
+                if(it!=s.end()){
+                    s.erase(it);
+                }
+                
+                dist[nbr]=edge+dis;
+                s.insert({dist[nbr],nbr});
+               
+            }
+        }
+        
+    }
+    
+        
+        
+        
+        
+       
+        for(int i=0;i<v;i++){
+            
+           cout<<i<<" "<<dist[i]<<endl;
+        }
+        
+        return dist[4];
+    }
+};
+
+int main(){
+    
+    graph g(5);
+    g.insert(0,1,1);
+    g.insert(1,2,2);
+    g.insert(0,2,4);
+    g.insert(0,3,7);
+    g.insert(3,2,2);
+    g.insert(3,4,2);//g.print();
+    cout<<" "<<g.den(0);
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
