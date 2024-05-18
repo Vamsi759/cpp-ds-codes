@@ -10,7 +10,7 @@ class graph{
         v=x;
         l=new list<int>[v];
     }
-    
+    ////// some mistake in that right;
     void add(int a,int b){
         l[a].push_back(b);
         l[b].push_back(a);
