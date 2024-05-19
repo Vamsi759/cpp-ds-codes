@@ -92,6 +92,135 @@ int main(){
 
 
 
+//end one extra copy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+#include<iostream>
+#include<list>
+#include<set>
+#include<algorithm>
+#include<limits.h>
+#include<vector>
+
+using namespace std;
+class graph{
+    public:
+    int x;
+    list<pair<int,int>>*l;
+    graph(int d){
+        x=d;
+        l=new list<pair<int,int>>[x];
+    }
+    
+    void insert(int a,int b,int w){
+        l[a].push_back({w,b});
+        l[b].push_back({w,a});
+    }
+    
+    void print(){
+        
+    }
+    
+    void denn(int a){
+        
+        vector<int>d(x,INT_MAX);
+        set<pair<int,int>>den;
+        d[a]=0;
+        den.insert({d[a],a});
+        
+        while(!den.empty()){
+            
+            auto ap=den.begin();
+            int n=ap->second;
+            int dis=ap->first;
+            den.erase(ap);
+            
+            for(auto i:l[n]){
+                int nbr=i.second;
+                int edge=i.first;
+                
+                if((dis+edge)<d[nbr]){
+                    auto s=den.find({d[nbr],nbr});
+                    
+                    if(s!=den.end())den.erase(s);
+                    
+                    d[nbr]=dis+edge;
+                    den.insert({d[nbr],nbr});
+                    
+                }
+            }
+        }
+        
+        for(int i=0;i<d.size();i++){
+            cout<<i<<" "<<d[i]<<endl;
+        }
+        
+        
+    }
+};
+int main()
+{
+    graph g(5);
+    
+   /*g.insert(0,1,1);
+    g.insert(1,2,2);
+    g.insert(0,2,4);
+    g.insert(0,3,7);
+    g.insert(3,2,2);
+    g.insert(3,4,2);//g.print();*/
+    vector<int>p={0,1,1,1,2,2,0,2,4,0,3,7,3,2,2,3,4,2};
+    for(int i=0;i<p.size();i+=3){
+        cout<<p[i]<<p[i+1]<<p[i+2]<<endl;
+        g.insert(p[i],p[i+1],p[i+2]);
+    }
+    
+    g.denn(0);
+    
+}
+
+
+*/
+
 
 
 
